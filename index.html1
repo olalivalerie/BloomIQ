@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BloomIQ — Smart Irrigation</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero" id="home">
+    <nav class="nav">
+      <div class="brand">BloomIQ</div>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#demo">Demo</a></li>
+        <li><a href="#dataset">Dataset</a></li>
+      </ul>
+    </nav>
+
+    <div class="hero-content">
+      <h1>BloomIQ</h1>
+      <p>Automated irrigation for farms, gardens and indoor plants — bringing greens to life intelligently.</p>
+      <a class="cta" href="#features">Explore BloomIQ</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="features" class="card">
+      <h2>Features</h2>
+      <ul>
+        <li>Monitors soil moisture, temperature and humidity in real-time</li>
+        <li>Automatic pump control with configurable thresholds or ML-based decisions</li>
+        <li>Works for farms, home gardens, office plants and flower beds</li>
+        <li>Offline-capable demo dashboard for presentations</li>
+        <li>Includes synthetic dataset for model prototyping</li>
+      </ul>
+    </section>
+
+    <section id="how" class="card">
+      <h2>How BloomIQ works</h2>
+      <ol>
+        <li>Sensors (soil moisture probe, DHT11/22 for temp/humidity, optional light sensor) collect environmental data.</li>
+        <li>An ESP32 reads sensors and applies watering logic (rule-based or ML model).</li>
+        <li>A relay switches a water pump or solenoid valve to irrigate when needed.</li>
+        <li>Optional GSM module can send SMS alerts; data can be logged locally or sent to a cloud/dashboard.</li>
+      </ol>
+    </section>
+
+    <section id="demo" class="card">
+      <h2>Offline Demo Dashboard</h2>
+      <p>Click <strong>Start Demo</strong> to simulate live sensor readings in your browser. This runs fully offline.</p>
+
+      <div class="widgets">
+        <div class="widget"><h3>Soil moisture</h3><div id="soilVal" class="big">-- %</div></div>
+        <div class="widget"><h3>Temperature</h3><div id="tempVal" class="big">-- °C</div></div>
+        <div class="widget"><h3>Humidity</h3><div id="humVal" class="big">-- %</div></div>
+        <div class="widget"><h3>Pump</h3><div id="pumpVal" class="big">--</div></div>
+      </div>
+
+      <div style="text-align:center;">
+        <button id="startDemo">Start Demo (simulate)</button>
+        <div class="hint">Runs offline — great for presentations.</div>
+      </div>
+    </section>
+
+    <section id="dataset" class="card">
+      <h2>Training Dataset (synthetic)</h2>
+      <p>Download the provided dataset for model prototyping:</p>
+      <p><a href="bloomiq_dataset.csv" download>Download bloomIQ_dataset.csv</a></p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>Made with 🌱 by BloomIQ — Automated Irrigation</small>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

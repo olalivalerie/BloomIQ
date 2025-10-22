@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BloomIQ — Smart Irrigation</title>
+  <meta name="description" content="BloomIQ — Automated irrigation for farms, gardens and indoor plants. Offline demo and synthetic dataset included." />
+  <style>
+    :root{
+      --bg:#f6fbf6;
+      --card:#ffffff;
+      --accent:#228b22;
+      --muted:#334;
+      --glass: rgba(238,247,238,0.9);
+    }
+    *{box-sizing:border-box}
+    body{font-family:Inter,system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; margin:0; background:var(--bg); color:var(--muted); -webkit-font-smoothing:antialiased}
+    a{color:var(--accent)}
+    header.hero{background:linear-gradient(180deg, rgba(34,139,34,0.09), transparent); padding:48px 16px 56px; text-align:center}
+    .nav{display:flex;justify-content:space-between;align-items:center;max-width:1100px;margin:0 auto;padding:8px 16px}
+    .brand{font-weight:800;color:var(--accent);font-size:1.1rem}
+    .nav-links{list-style:none;display:flex;gap:14px;margin:0;padding:0}
+    .nav-links a{text-decoration:none;color:var(--muted);font-weight:600}
+    .hero-content{max-width:920px;margin:12px auto}
+    .hero-content h1{font-size:2.2rem;margin:6px 0;color:var(--accent)}
+    .hero-content p{color:#345;line-height:1.45}
+    .cta{display:inline-block;margin-top:14px;background:var(--accent);color:white;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:700}
+    .container{max-width:980px;margin:20px auto;padding:0 16px}
+    .card{background:var(--card);padding:16px;border-radius:12px;margin-bottom:14px;box-shadow:0 6px 18px rgba(10,20,30,0.06)}
+    h2{margin-top:0}
+    ul{margin:8px 0 0 20px}
+    ol{margin:8px 0 0 18px}
+    .widgets{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:10px}
+    .widget{background:var(--glass);padding:14px;border-radius:10px;width:160px;text-align:center;box-shadow:0 3px 10px rgba(0,0,0,0.03)}
+    .widget h3{margin:0 0 8px 0;font-size:0.95rem;color:#2f4f2f}
+    .big{font-weight:700;font-size:1.2rem}
+    button#startDemo{margin-top:12px;padding:10px 14px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);background:white;cursor:pointer;font-weight:700}
+    .hint{font-size:0.9rem;color:#556;margin-top:8px;text-align:center}
+    footer.footer{text-align:center;color:#6a6a6a;padding:18px 0;font-size:0.9rem}
+    @media(max-width:640px){
+      .nav-links{display:none}
+      .hero-content h1{font-size:1.6rem}
+      .widget{width:48%}
+    }
+  </style>
+</head>
+<body>
+  <header class="hero" id="home">
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+      <div class="brand">BloomIQ</div>
+      <ul class="nav-links" role="menubar">
+        <li role="none"><a role="menuitem" href="#features">Features</a></li>
+        <li role="none"><a role="menuitem" href="#how">How it works</a></li>
+        <li role="none"><a role="menuitem" href="#demo">Demo</a></li>
+        <li role="none"><a role="menuitem" href="#dataset">Dataset</a></li>
+      </ul>
+    </nav>
+
+    <div class="hero-content" role="banner">
+      <h1>BloomIQ</h1>
+      <p>Automated irrigation for farms, gardens and indoor plants — bringing greens to life intelligently.</p>
+      <a class="cta" href="#features">Explore BloomIQ</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="features" class="card" aria-labelledby="features-heading">
+      <h2 id="features-heading">Features</h2>
+      <ul>
+        <li>Monitors soil moisture, temperature and humidity in real-time</li>
+        <li>Automatic pump control with configurable thresholds or ML-based decisions</li>
+        <li>Works for farms, home gardens, office plants and flower beds</li>
+        <li>Offline-capable demo dashboard for presentations</li>
+        <li>Includes synthetic dataset for model prototyping</li>
+      </ul>
+    </section>
+
+    <section id="how" class="card" aria-labelledby="how-heading">
+      <h2 id="how-heading">How BloomIQ works</h2>
+      <ol>
+        <li>Sensors (soil moisture probe, DHT11/22 for temp/humidity, optional light sensor) collect environmental data.</li>
+        <li>An ESP32 (or similar microcontroller) reads sensors and applies watering logic (rule-based or ML model).</li>
+        <li>A relay switches a water pump or solenoid valve to irrigate when needed.</li>
+        <li>Optional GSM module can send SMS alerts; data can be logged locally or sent to a cloud/dashboard.</li>
+      </ol>
+    </section>
+
+    <section id="demo" class="card" aria-labelledby="demo-heading">
+      <h2 id="demo-heading">Offline Demo Dashboard</h2>
+      <p>Click <strong>Start Demo</strong> to simulate live sensor readings in your browser. This runs fully offline.</p>
+
+      <div class="widgets" aria-live="polite">
+        <div class="widget" aria-hidden="false">
+          <h3>Soil moisture</h3>
+          <div id="soilVal" class="big">-- %</div>
+        </div>
+        <div class="widget" aria-hidden="false">
+          <h3>Temperature</h3>
+          <div id="tempVal" class="big">-- °C</div>
+        </div>
+        <div class="widget" aria-hidden="false">
+          <h3>Humidity</h3>
+          <div id="humVal" class="big">-- %</div>
+        </div>
+        <div class="widget" aria-hidden="false">
+          <h3>Pump</h3>
+          <div id="pumpVal" class="big">--</div>
+        </div>
+      </div>
+
+      <div style="text-align:center;">
+        <button id="startDemo" aria-pressed="false">Start Demo (simulate)</button>
+        <div class="hint">This demo is for demonstrations and presentations — no device required.</div>
+      </div>
+    </section>
+
+    <section id="dataset" class="card" aria-labelledby="dataset-heading">
+      <h2 id="dataset-heading">Training Dataset (synthetic)</h2>
+      <p>For model prototyping, use the provided synthetic CSV with readings and heuristic labels.</p>
+      <p><a id="datasetLink" href="bloomiq_dataset.csv" download>Download <strong>bloomiq_dataset.csv</strong></a></p>
+      <details>
+        <summary>Dataset description</summary>
+        <p>Columns: <code>timestamp, soil_moisture_pct, temperature_c, humidity_pct, light_lux, rainfall_mm, pump, state_label</code></p>
+        <p><em>state_label</em> values include: <code>healthy</code>, <code>dry</code>, <code>overwatered</code>, <code>heat_stressed</code>.</p>
+      </details>
+    </section>
+
+    <section class="card" aria-labelledby="usage-heading">
+      <h2 id="usage-heading">How to use</h2>
+      <ul>
+        <li>Save this file as <code>index.html</code>. Place <code>bloomiq_dataset.csv</code> in the same folder to enable the download link.</li>
+        <li>Double-click <code>index.html</code> to open in a browser (works offline).</li>
+        <li>To publish online later, upload these files to a GitHub repository and enable GitHub Pages.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>Made with 🌱 by BloomIQ — Automated Irrigation</small>
+  </footer>
+
+  <script>
+    // Offline demo simulator for BloomIQ
+    (function(){
+      let demoRunning = false;
+      const soilEl = document.getElementById('soilVal');
+      const tempEl = document.getElementById('tempVal');
+      const humEl = document.getElementById('humVal');
+      const pumpEl = document.getElementById('pumpVal');
+      const startBtn = document.getElementById('startDemo');
+
+      function randRange(a,b){ return +(Math.random()*(b-a)+a).toFixed(1); }
+
+      function simulateStep(){
+        // Use slightly different ranges to represent farm/garden/indoor variability
+        const soil = Math.max(0, Math.min(100, randRange(8,95)));
+        const temp = randRange(10,38);
+        const hum = randRange(20,95);
+        // Watering decision: if soil < 45 then pump on (simple rule)
+        const pump = soil < 45 ? 1 : 0;
+        soilEl.textContent = soil + ' %';
+        tempEl.textContent = temp + ' °C';
+        humEl.textContent = hum + ' %';
+        pumpEl.textContent = pump ? 'ON' : 'OFF';
+        // accessibility: update aria-pressed
+        startBtn.setAttribute('aria-pressed', String(demoRunning));
+      }
+
+      startBtn.addEventListener('click', ()=>{
+        if(!demoRunning){
+          demoRunning = true;
+          startBtn.textContent = 'Stop Demo';
+          simulateStep();
+          window._bloomInterval = setInterval(simulateStep, 1500);
+        } else {
+          demoRunning = false;
+          startBtn.textContent = 'Start Demo (simulate)';
+          clearInterval(window._bloomInterval);
+          startBtn.setAttribute('aria-pressed', 'false');
+        }
+      });
+
+      // seed a first value so the UI doesn't look empty
+      simulateStep();
+    })();
+  </script>
+</body>
+</html>
